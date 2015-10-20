@@ -65,9 +65,9 @@ void draw() {
   //treasure
   image(treasure,x,y);
   //enemy
+  image(enemy,a,b);
   a+=3;
-  a%=640;
-  image(enemy,a,b);  
+  a%=640;  
   //hpcolor
   //hp:18~210->192:100=(19.2):10=(38.4):20
   fill(255,0,0);

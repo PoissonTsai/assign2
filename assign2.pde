@@ -91,10 +91,10 @@ void draw() {
           }
      break;
     case GAME_RUN:   
-     //fighter and enemy
+     //fighter and enemy     
      if(a>60){
      if(a<e){if(b+3<f){b+=3;}else if(b-3>f){b-=3;}else{b=f;}
-     }}
+     }}else{a+=3;}
      if(e+24>=a-30 && e-24<=a+30 && f+24>=b-30 && f-24<=b+30){
        h=h-38.4;a=-60;b=floor(random(0,421));
        }

@@ -13,9 +13,9 @@ PImage mEGainbomb;
 PImage startOne;
 PImage startTwo;
 //int
-int x,y,c,d;
+int treasureX,treasureY,bgX,bgY;
 //float
-float a,b,h,e,f;
+float enemyX,enemyY,h,fighterX,fighterY;
 float speed = 5;
 //key press
 boolean upPressed = false, downPressed = false, leftPressed = false, rightPressed = false;
@@ -40,34 +40,34 @@ void setup () {
   startOne = loadImage("img/start1.png");
   startTwo = loadImage("img/start2.png");
   //done in assign1
-  x = floor(random(41,600));
-  y = floor(random(41,440));
+  treasureX = floor(random(41,600));
+  treasureY = floor(random(41,440));
   h = 56.4;
-  a = -60;
-  b = floor(random(0,421));
-  c = 0;  
+  enemyX = -60;
+  enemyY = floor(random(0,421));
+  bgX = 0;  
   //fighter
-  e = 585;
-  f = 230;  
+  fighterX = 585;
+  fighterY = 230;  
   //gamestate
   gameState = GAME_START;  
 }
 void draw() {
   background(0);
   //bg  
-  c+=5;
-  c%=1280;
-  image(bgTwo,c,0,640,480);
-  image(bgOne,c-640,0,640,480);
-  image(bgTwo,c-1280,0,640,480);
+  bgX+=5;
+  bgX%=1280;
+  image(bgTwo,bgX,0,640,480);
+  image(bgOne,bgX-640,0,640,480);
+  image(bgTwo,bgX-1280,0,640,480);
   //fighter
-  image(fighter,e,f);
+  image(fighter,fighterX,fighterY);
   //treasure
-  image(treasure,x,y);
+  image(treasure,treasureX,treasureY);
   //enemy
-  image(enemy,a,b);
-  a+=3;
-  a%=640;  
+  image(enemy,enemyX,enemyY);
+  enemyX+=3;
+  enemyX%=640;  
   //hpcolor
   //hp:18~210->192:100=(19.2):10=(38.4):20
   fill(255,0,0);
@@ -92,34 +92,34 @@ void draw() {
      break;
     case GAME_RUN:   
      //fighter and enemy     
-     if(a>60){
-     if(a<e){if(b+3<f){b+=3;}else if(b-3>f){b-=3;}else{b=f;}
-     }}else{a+=3;}
-     if(e+24>=a-30 && e-24<=a+30 && f+24>=b-30 && f-24<=b+30){
-       h=h-38.4;a=-60;b=floor(random(0,421));
+     if(enemyX>60){
+     if(enemyX<fighterX){if(enemyY+3<fighterY){enemyY+=3;}else if(enemyY-3>fighterY){enemyY-=3;}else{enemyY=fighterY;}
+     }}else{enemyX+=3;}
+     if(fighterX+24>=enemyX-30 && fighterX-24<=enemyX+30 && fighterY+24>=enemyY-30 && fighterY-24<=enemyY+30){
+       h=h-38.4;enemyX=-60;enemyY=floor(random(0,421));
        }
      //fighter and treasure
-     if(e+24>=x-20 && e-24<=x+20 && f+24>=y-20 && f-24<=y+20){
-       h=h+19.2;x=floor(random(41,600));y=floor(random(41,440));
+     if(fighterX+24>=treasureX-20 && fighterX-24<=treasureX+20 && fighterY+24>=treasureY-20 && fighterY-24<=treasureY+20){
+       h=h+19.2;treasureX=floor(random(41,600));treasureY=floor(random(41,440));
        }
      //fighter pressed
      if(upPressed){
-       f -= speed;
+       fighterY -= speed;
      }
      if(downPressed){
-       f += speed;
+       fighterY += speed;
      }
      if(leftPressed){
-       e -= speed;
+       fighterX -= speed;
      }
      if(rightPressed){
-       e += speed;
+       fighterX += speed;
      }
      //fighter should not out
-     if(e>=589){e=589;}
-     if(e<=0){e=0;}
-     if(f>=429){f=429;}
-     if(f<=0){f=0;}
+     if(fighterX>=589){fighterX=589;}
+     if(fighterX<=0){fighterX=0;}
+     if(fighterY>=429){fighterY=429;}
+     if(fighterY<=0){fighterY=0;}
      //hp
      if(h>=210){h=210;}     
      if(h<=18.1){gameState = GAME_LOSE;}
@@ -128,7 +128,7 @@ void draw() {
         //mouse action 
      if(mouseX>209 && mouseX<433 && mouseY>312 && mouseY<345){
        if(mousePressed){
-        gameState = GAME_RUN;h = 56.4;e = 585;f = 230;a = -60;b = floor(random(0,421));x = floor(random(41,600));y = floor(random(41,440));
+        gameState = GAME_RUN;h = 56.4;fighterX = 585;fighterY = 230;enemyX = -60;enemyY = floor(random(0,421));treasureX = floor(random(41,600));treasureY = floor(random(41,440));
          }else{
            image(endOne,0,0);
            }

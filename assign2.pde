@@ -92,9 +92,8 @@ void draw() {
      break;
     case GAME_RUN:   
      //fighter and enemy     
-     if(enemyX>60){
-     if(enemyX<fighterX){if(enemyY+3<fighterY){enemyY+=3;}else if(enemyY-3>fighterY){enemyY-=3;}else{enemyY=fighterY;}
-     }}else{enemyX+=3;}
+     if(enemyX<=fighterX+10){if(enemyY-3<fighterY){enemyY+=3;}else if(enemyY+3>fighterY){enemyY-=3;}else{enemyY=fighterY;}
+     }
      if(fighterX+24>=enemyX-30 && fighterX-24<=enemyX+30 && fighterY+24>=enemyY-30 && fighterY-24<=enemyY+30){
        h=h-38.4;enemyX=-60;enemyY=floor(random(0,421));
        }
